@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Search News</h1>
+  <form method="get" action="{% url 'search_news' %}">
+    <input type="text" name="query" placeholder="Enter your query">
+    <button type="submit">Search</button>
+  </form>
+  
+  {% if news %}
+    <h2>Results for "{{ query }}"</h2>
+    {% for article in news %}
+      <h3>{{ article.title }}</h3>
+      <p>{{ article.description }}</p>
+      <a href="{{ article.url }}">Read more</a>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

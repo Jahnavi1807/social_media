@@ -1,0 +1,22 @@
+<!-- {% extends 'base.html' %}
+
+{% block body_block %}
+<h1>Request a Mentorship</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+{% endblock %}
+ -->
+
+ {% for request in mentor_requests %}
+    <div class="mentor-request">
+        <p>{{ request.mentor.username }} has requested to mentor you.</p>
+        <p>Title: {{ request.title }}</p>
+        <p>Description: {{ request.description }}</p>
+        <p>Status: {{ request.status }}</p>
+    </div>
+{% empty %}
+    <p>You have no mentorship requests at the moment.</p>
+{% endfor %}

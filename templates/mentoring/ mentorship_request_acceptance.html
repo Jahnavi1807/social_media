@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+  <h1>Mentorship Request Acceptance</h1>
+  <p>Are you sure you want to {{ action }} this mentorship request from {{ mentorship_request.mentee.username }}?</p>
+  <form method="POST" action="{% url 'mentoring:accept_request' mentorship_request.pk %}">
+    {% csrf_token %}
+    <button type="submit" name="action" value="{{ action }}">Yes</button>
+    <a href="{% url 'mentoring:requests' %}">No</a>
+  </form>
+{% endblock %}

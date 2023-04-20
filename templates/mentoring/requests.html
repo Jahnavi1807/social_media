@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+  <h1>Mentorship Requests</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Requested By</th>
+        <th>Mentor Requested</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mentorship_request in mentorship_requests %}
+        <tr>
+          <td>{{ mentorship_request.mentee }}</td>
+          <td>{{ mentorship_request.mentor }}</td>
+          <td>{% if mentorship_request.status == 'pending' %}Pending{% elif mentorship_request.status == 'accepted' %}Accepted{% else %}Declined{% endif %}</td>
+          <td><a href="{% url 'mentoring:accept_request' mentorship_request.pk %}" class="btn btn-primary">View Request</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

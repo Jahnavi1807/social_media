@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <title>News App</title>
+</head>
+<body>
+  <h1>News App</h1>
+  <div class="container">
+  	<div class="row">
+  		<div class="col-sm-8">
+        {% for i in articles %}
+
+  
+
+  <p>{{ i.author }}</p>
+  <p>{{ i.title }}</p>
+  <p>{{ i.source.name}}</p>
+  <p>{{ i.description }}</p>
+  <br>
+  <br>
+  <img src="{{i.urlToImage}}" alt="" height="200px" width="200px">
+  <br>
+
+
+
+
+  <a href="{{ i.url }}" target="_blank">Explore Full news</a>
+  <small> Date:{{i.publishedAt}}</small>
+
+
+  
+  {% endfor %}
+
+
+  			
+  		</div>
+      <div class="col-sm-6">
+        Category
+      </div>
+  	</div>
+  </div>  
+
+  
+ 
+</body>
+</html>
+

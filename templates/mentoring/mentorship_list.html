@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+  <h1>Mentorship List</h1>
+  
+  {% if mentorships %}
+    <ul>
+    {% for mentorship in mentorships %}
+      <li>{{ mentorship.title }} - {{ mentorship.mentor }}</li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No mentorships available.</p>
+  {% endif %}
+{% endblock %}

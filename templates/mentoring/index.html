@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+ {% block body_block %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      <h1 class="text-center">Mentoring</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      {% if mentorship_requests %}
+        <h2>Mentorship Requests</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Mentee</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for request in mentorship_requests %}
+            <tr>
+              <td>{{ request.mentee.username }}</td>
+              <td>{{ request.created_at }}</td>
+              <td>
+                <a href="{% url 'mentoring:accept_request' request.pk %}" class="btn btn-primary btn-sm">Accept</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No mentorship requests at this time.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

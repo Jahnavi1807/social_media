@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Mentorship Requests
+{% endblock %}
+
+{% block body_block %}
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Mentorship Requests</div>
+        <div class="card-body">
+          {% if mentorship_requests %}
+            <ul class="list-group">
+              {% for mentorship_request in mentorship_requests %}
+                <li class="list-group-item">
+                  <a href="{% url 'mentoring:mentorship_request_detail' mentorship_request.id %}">
+                    <h5>{{ mentorship_request.title }}</h5>
+                  </a>
+                  <p>{{ mentorship_request.description }}</p>
+                  <p><strong>Status:</strong> {{ mentorship_request.get_status_display }}</p>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>There are no mentorship requests at the moment.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
