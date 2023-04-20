@@ -26,22 +26,21 @@ from App_login.models import Follow
 #         return cleaned_data
 
 class MentoringRequestForm(forms.ModelForm):
-    mentor = forms.ModelChoiceField(queryset=None)
-
     class Meta:
         model = MentorshipRequest
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'mentor']
 
     def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.instance.mentee = user
         self.fields['mentor'].queryset = User.objects.filter(
-            id__in=user.following.values_list('following_id', flat=True)
+            id__in=Follow.objects.filter(follower=user.id).values_list('following_id', flat=True)
         )
 
     def clean(self):
         cleaned_data = super().clean()
         mentor = cleaned_data.get('mentor')
-        mentee = self.instance.mentee if self.instance else self.initial.get('mentee')
+        mentee = self.mentee
         if mentor == mentee:
             raise forms.ValidationError("Mentor and mentee cannot be the same.")
         return cleaned_data
@@ -58,33 +57,10 @@ class MentorshipForm(forms.ModelForm):
         }
 
 
-
-from .models import MentorshipRequest
-
-class MentorshipRequestForm(forms.ModelForm):
-    mentor = forms.CharField(widget=forms.HiddenInput())
-    
-    class Meta:
-        model = Mentorship
-        fields = ['mentee', 'mentor', 'subject', 'message']
-        widgets = {
-            'mentor': forms.HiddenInput(),
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
-        }
-
-
-
 class MentorshipAcceptanceForm(forms.ModelForm):
     class Meta:
         model = Mentorship
         fields = ['mentor', 'mentee']
 
-
-class MentoringRequestForm(forms.ModelForm):
-    mentor = forms.ModelChoiceField(queryset=User.objects.filter(is_mentor=True))
-    message = forms.CharField(widget=forms.Textarea(attrs={'rows': 5}))
-
-    class Meta:
-        model = MentoringRequest
-        fields = ('mentor', 'message')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
