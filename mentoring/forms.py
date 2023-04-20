@@ -40,7 +40,7 @@ class MentoringRequestForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         mentor = cleaned_data.get('mentor')
-        mentee = self.mentee
+        mentee = self.instance.mentee
         if mentor == mentee:
             raise forms.ValidationError("Mentor and mentee cannot be the same.")
         return cleaned_data
