@@ -1,4 +1,78 @@
-<!DOCTYPE html>
+{% extends 'navbar.html' %}
+{%load crispy_forms_tags %}
+{% block title %} {{ title }}  {% endblock %}
+{% block body_block %}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0"> -->
+  <title>News App</title>
+</head>
+<body>
+  <h1 class="text-center">News App</h1>
+
+
+  <h2>Search Country</h2>
+  <form accept="" method="get">
+    <input type="text" name="country">
+    <button type="submit" value="search">Search</button>
+  </form>
+  <br>
+  <br>
+
+  <h2>Search Category </h2>
+  <form accept="" method="get">
+    <input type="text" name="category">
+    <button type="submit" value="search">Search</button>
+  </form>
+
+
+  <div class="container">
+    <div class="row">
+   {% if articles %}
+<div class="col-md-6">
+  {% for i in articles %}
+  <div class="card rounded shadow-lg m-2 " style="width: 18rem;">
+    <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">{{ i.author }}</p>
+      <h5 class="card-title">{{ i.title }}</h5>
+      <p class="card-title">{{ i.source.name }}</p>
+      <p class="card-text">{{ i.description }}</p>
+      <hr>
+      <small> Date:{{i.publishedAt}}</small>
+      {% if i.url %}
+      <a href="{{ i.url }}" target="_blank" class="btn btn-primary m-1">See news</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No news found.</p>
+{% endif %}
+
+      <div class="col-md-8">
+        Category
+        <ul class="list-group">
+          <li class="list-group-item"><a class="btn btn-primary" href="{% url 'news' %}?category=Health">Health</a></li>
+          <li class="list-group-item"><a class= "btn btn-primary" href="{% url 'news' %}?category=Science">Science</a></li>
+          <li class="list-group-item"><a class= "btn btn-primary" href="{% url 'news' %}?category=technology">Technology</a></li>
+          <li class="list-group-item"><a class= "btn btn-primary" href="{% url 'news' %}?category=Entertainement">Entertainement</a></li>
+          <li class="list-group-item"><a class= "btn btn-primary" href="{% url 'news' %}?category=Sports">Sports</a></li>
+          <li class="list-group-item"><a class= "btn btn-primary" href="{% url 'news' %}?category=Business">Business</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,42 +83,36 @@
 <body>
   <h1>News App</h1>
   <div class="container">
-  	<div class="row">
-  		<div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-6">
         {% for i in articles %}
+        <div class="card rounded shadow-lg m-2 " style="width: 18rem;">
+  <img  src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">{{ i.author }}</p>
+    <h5 class="card-title">{{ i.title }}</h5>
+    <p class="card-title">{{ i.source.name }}</p>
+    <p class="card-text">{{ i.description }}</p>
+    <hr>
+    <small> Date:{{i.publishedAt}}</small>
+    <a href="{{ i.url }}" class="btn btn-primary m-1">See news</a>
+  </div>
+</div>
 
-  
-
-  <p>{{ i.author }}</p>
-  <p>{{ i.title }}</p>
-  <p>{{ i.source.name}}</p>
-  <p>{{ i.description }}</p>
-  <br>
-  <br>
-  <img src="{{i.urlToImage}}" alt="" height="200px" width="200px">
-  <br>
-
-
-
-
-  <a href="{{ i.url }}" target="_blank">Explore Full news</a>
-  <small> Date:{{i.publishedAt}}</small>
-
-
-  
   {% endfor %}
 
 
-  			
-  		</div>
+        
+      </div>
       <div class="col-sm-6">
         Category
       </div>
-  	</div>
+    </div>
   </div>  
 
   
  
 </body>
-</html>
+</html> -->
+
 

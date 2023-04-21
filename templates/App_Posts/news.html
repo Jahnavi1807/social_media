@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+<!-- {% extends 'base.html' %}
 
-{% block content %}
+{% block body_block %}
   <h1>Search News</h1>
   <form method="get" action="{% url 'search_news' %}">
     <input type="text" name="query" placeholder="Enter your query">
@@ -16,3 +16,87 @@
     {% endfor %}
   {% endif %}
 {% endblock %}
+ -->
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <title>News App</title>
+</head>
+<body>
+  <h1>News App</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        {% for i in articles %}
+        <div class="card rounded shadow-lg m-2 " style="width: 18rem;">
+  <img  src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">{{ i.author }}</p>
+    <h5 class="card-title">{{ i.title }}</h5>
+    <p class="card-title">{{ i.source.name }}</p>
+    <p class="card-text">{{ i.description }}</p>
+    <hr>
+    <small> Date:{{i.publishedAt}}</small>
+    <a href="{{ i.url }}" class="btn btn-primary m-1">See news</a>
+  </div>
+</div>
+
+  {% endfor %}
+
+
+        
+      </div>
+      <div class="col-sm-6">
+        Category
+      </div>
+    </div>
+  </div>  
+
+  
+ 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <title>News App</title>
+</head>
+<body>
+  <h1>News App</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        {% for i in articles %}
+        <div class="card rounded shadow-lg m-2 " style="width: 18rem;">
+          <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">{{ i.author }}</p>
+            <h5 class="card-title">{{ i.title }}</h5>
+            <p class="card-title">{{ i.source.name }}</p>
+            <p class="card-text">{{ i.description }}</p>
+            <hr>
+            <small> Date:{{i.publishedAt}}</small>
+            <!-- {% if i.url %}
+    <a href="{{ i.url }}" class="btn btn-primary m-1">See news</a>
+{% endif %} -->
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-md-6">
+        Category
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
