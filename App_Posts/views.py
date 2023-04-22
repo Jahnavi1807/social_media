@@ -31,6 +31,7 @@ def home(request):
 
     context = {'title': 'Home Page', 'search': search, 'result': result,'posts':posts, 'liked_post_list':liked_post_list}
     return render(request, 'App_Posts/home.html', context)
+    
 
 @login_required
 def liked(request, pk):
@@ -47,6 +48,9 @@ def unliked(request,pk):
     already_liked = Like.objects.filter(post=post, user=request.user)
     already_liked.delete()
     return HttpResponseRedirect(reverse('home'))
+
+
+
 
 
 
