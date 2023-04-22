@@ -46,6 +46,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('mentoring/', include('mentoring.urls')),
     path('news/', include('news_api.urls')),
+    path('contests/', include('coding_contests_api.urls')),
 
 ]
 

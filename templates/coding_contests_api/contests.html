@@ -1,0 +1,17 @@
+<!-- contests.html -->
+
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+
+  <h1>Latest Contests</h1>
+  {% if error_message %}
+    <p class="alert alert-danger">{{ error_message }}</p>
+  {% endif %}
+  <ul>
+  {% for contest in contests %}
+    <li>{{ contest.name }} - {{ contest.startTimeSeconds|date:"F d, Y H:i:s" }}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

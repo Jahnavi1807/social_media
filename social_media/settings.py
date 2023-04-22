@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'fontawesome_5',
     'news_api.apps.NewsApiConfig',
+    'coding_contests_api.apps.CodingContestsApiConfig',
+
 
 ]
 

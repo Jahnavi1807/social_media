@@ -41,9 +41,18 @@
   </form>
 </nav>
 
+        <li class="nav-item active ">
+          <a class="nav-link" href="{% url 'news_api:news' %}">News</a>
+        </li>
+        <li class="nav-item active ">
+          <a class="nav-link" href="{% url 'coding_contests_api:contests' %}">Contests</a>
+        </li>
         <li class="nav-item active">
           <a class ="nav-link" href="{% url 'App_login:logout' %} ">Logout</a>
+
         </li>
+
+        
 
   <li class="nav-item active">
     {% if user.user_profile.profile_pic %}
